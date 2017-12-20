@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 19:06:03 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/18 20:43:01 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/19 21:43:29 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ typedef struct			s_printf
 	enum e_type			type_tag;
 	t_bool				pre;
 	t_bool				pad_zero;
-	t_bool				pad_pos;
 	t_bool				left_align;
 	t_bool				pre_plus;
-	size_t				width;
-	size_t				precis;	
+	t_bool				pad_pos;
+	unsigned			width;
+	unsigned			prec;
 }						t_printf;
 
 #endif

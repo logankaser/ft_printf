@@ -6,12 +6,15 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:14:26 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/18 15:06:37 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/19 21:39:49 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <wchar.h>
 #include <unistd.h>
+#define SWITCH(a,b) if (a) {b;}
+#define CASE(a,b) else if (a) {b;}
 
 /*
 **%[%][flags][width][(dot)precision][length]specifier
@@ -55,12 +58,42 @@
 **.
 */
 
-static void	format_parse(char **f, va_list args, size_t *len)
+static unsigned	read_num(char **f)
 {
+	unsigned	num;
 
+	num = 0;
+	while (ft_isdigit(**f))
+	{
+		num *= 10;
+		num += **f - '0';
+		++*f;
+	}
+	return (num);
 }
 
-static void	format_iter(char *f, va_list args, size_t *len)
+static void		format_parse(char **f, va_list args, size_t *len)
+{
+	t_printf	pf;
+
+	while (IS_ANY5(**f, '#', '0', '-', '+', ' '))
+	{
+		SWITCH(**f == '#', pf.pre = 1)
+		CASE(**f == '0', pf.pad_zero = 1)
+		CASE(**f == '-', pf.left_align = 1)
+		CASE(**f == '+', pf.pre_plus = 1)
+		CASE(**f == ' ', pf.pad_pos = 1)
+		++*f;
+	}
+	pf.width = read_num(f);
+	**f == '.' && (++*f);
+	pf.prec = read_num(f);
+	//format_print(pf, args, len);
+	(void)args;
+	(void)len;
+}
+
+static void		format_iter(char *f, va_list args, size_t *len)
 {
 	size_t d;
 
@@ -79,7 +112,7 @@ static void	format_iter(char *f, va_list args, size_t *len)
 			}
 			write(1, f, d);
 			f += d + 1;
-			format_parse(&f, args, &d);
+			format_parse(&f, args, len);
 			*len += d;
 			d = 0;
 		}
@@ -89,7 +122,7 @@ static void	format_iter(char *f, va_list args, size_t *len)
 	*len += d;
 }
 
-int			ft_printf(char *format, ...)
+int				ft_printf(char *format, ...)
 {
 	va_list	args;
 	size_t	len;
@@ -106,6 +139,7 @@ int			ft_printf(char *format, ...)
 }
 
 #include <stdio.h>
+
 int			main(int argc, char **argv)
 {
 	int r;

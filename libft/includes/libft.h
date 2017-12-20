@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2017/11/16 14:07:22 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/19 20:06:25 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <unistd.h>
 # define NULL_GUARD(a) if(!(a)) return (NULL);
 # define ASSERT(a) if (!(a)) {ASSERT_FAIL;}
+# define IS_ANY2(x,a,b) (x == a || x == b)
+# define IS_ANY3(x,a,b,c) (x == a || x == b || x == c)
+# define IS_ANY4(x,a,b,c,d) (x == a || x == b || x == c || x == d)
+# define IS_ANY5(x,a,b,c,d,e) (x == a || x == b || x == c || x == d || x == e)
 
 typedef char		t_bool;
 void				*ft_memset(void *ptr, int val, size_t n);
