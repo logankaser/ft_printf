@@ -6,20 +6,20 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:14:26 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/19 21:39:49 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/21 14:08:44 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <wchar.h>
 #include <unistd.h>
-#define SWITCH(a,b) if (a) {b;}
-#define CASE(a,b) else if (a) {b;}
 
 /*
 **%[%][flags][width][(dot)precision][length]specifier
 **
 **Specifiers:
+**	c	int converted to char
+**	C	int converted to wide char
 **	s	string
 **	S	wide char string
 **	p	pointer
@@ -28,7 +28,6 @@
 **	o	unsigned in octal, O = lo
 **	x	unsigned in hexadecimal
 **	X	unsigned in hexadecimal uppercase
-**	cC	char
 **
 **Flags:
 **	#		(o,O) prepend '0', x prepend "0x", X prepend "0X"
@@ -58,42 +57,53 @@
 **.
 */
 
-static unsigned	read_num(char **f)
+static void	parse_specifiers(t_printf *pf, char **f)
 {
-	unsigned	num;
-
-	num = 0;
-	while (ft_isdigit(**f))
-	{
-		num *= 10;
-		num += **f - '0';
-		++*f;
-	}
-	return (num);
+	MATCH(**f == 'c', pf->type = t_char)
+	OR(**f == 'C', pf->type = t_wchar)
+	OR(**f == 's', pf->type = t_str)
+	OR(**f == 'S', pf->type = t_wstr)
+	OR(**f == 'p', pf->type = t_ptr)
+	OR(ANY3(**f, 'i', 'd', 'D'), pf->type = t_int)
+	OR(ANY2(**f, 'u', 'U'), pf->type = t_uint)
+	OR(ANY2(**f, 'o', 'O'), pf->type = t_octal)
+	OR(**f == 'x', pf->type = t_hex)
+	OR(**f == 'X', pf->type = t_hex_up)
+	MATCH(ANY3(**f, 'U', 'O', 'D'), pf->len = l_l)
 }
 
-static void		format_parse(char **f, va_list args, size_t *len)
+static void	format_parse(char **f, va_list args, size_t *len)
 {
 	t_printf	pf;
 
-	while (IS_ANY5(**f, '#', '0', '-', '+', ' '))
+	pf = ((t_printf){{0}, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+	while (**f && ANY5(**f, '#', '0', '-', '+', ' '))
 	{
-		SWITCH(**f == '#', pf.pre = 1)
-		CASE(**f == '0', pf.pad_zero = 1)
-		CASE(**f == '-', pf.left_align = 1)
-		CASE(**f == '+', pf.pre_plus = 1)
-		CASE(**f == ' ', pf.pad_pos = 1)
+		MATCH(**f == '#', pf.pre = 1)
+		OR(**f == '0', pf.pad_zero = 1)
+		OR(**f == '-', pf.left_align = 1)
+		OR(**f == '+', pf.pre_plus = 1)
+		OR(**f == ' ', pf.pad_pos = 1)
 		++*f;
 	}
 	pf.width = read_num(f);
 	**f == '.' && (++*f);
 	pf.prec = read_num(f);
-	//format_print(pf, args, len);
-	(void)args;
+	MATCH(!ft_strncmp(*f, "hh", 2), pf.len = l_hh)
+	OR(**f == 'h', pf.len = l_h)
+	OR(!ft_strncmp(*f, "ll", 2), pf.len = l_ll)
+	OR(**f == 'l', pf.len = l_l)
+	OR(**f == 'j', pf.len = l_j)
+	OR(**f == 'z', pf.len = l_z)
+	pf.len && (++*f);
+	ANY2(pf.len, l_hh, l_ll) && (++*f);
+	parse_specifiers(&pf, f);
 	(void)len;
+	(void)args;
+ 	//format_print(pf, len);
 }
 
-static void		format_iter(char *f, va_list args, size_t *len)
+static void	format_iter(char *f, va_list args, size_t *len)
 {
 	size_t d;
 
@@ -122,7 +132,7 @@ static void		format_iter(char *f, va_list args, size_t *len)
 	*len += d;
 }
 
-int				ft_printf(char *format, ...)
+int			ft_printf(char *format, ...)
 {
 	va_list	args;
 	size_t	len;

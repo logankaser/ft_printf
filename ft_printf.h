@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 19:06:03 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/19 21:43:29 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/21 13:59:31 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 **%[%][flags][width][(dot)precision][length]specifier
 **
 **Specifiers:
+**	c	int converted to char
+**	C	int converted to wide char
 **	s	string
 **	S	wide char string
 **	p	pointer
@@ -22,7 +24,6 @@
 **	o	unsigned in octal, O = lo
 **	x	unsigned in hexadecimal
 **	X	unsigned in hexadecimal uppercase
-**	cC	char
 **
 **Flags:
 **	#		(o,O) prepend '0', x prepend "0x", X prepend "0X"
@@ -52,18 +53,16 @@
 **.
 */
 
-#include "libft.h"
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+# include "libft.h"
 
 enum					e_type {
-	t_char = 1, t_uchar,
-	t_short, t_ushort,
-	t_int, t_uint,
-	t_str,
-	t_long, t_ulong, t_longlong, t_ulonglong,
-	t_intmax, t_uintmax,
-	t_size_t};
+	t_char = 1, t_wchar,
+	t_str, t_wstr, t_ptr, t_int,
+	t_uint, t_octal, t_hex, t_hex_up};
+
+enum					e_length { l_hh = 1, l_h, l_l, l_ll, l_j, l_z };
 
 typedef union			u_type
 {
@@ -85,8 +84,9 @@ typedef union			u_type
 
 typedef struct			s_printf
 {
-	t_type				type;
-	enum e_type			type_tag;
+	t_type				arg;
+	enum e_type			type;
+	enum e_length		len;
 	t_bool				pre;
 	t_bool				pad_zero;
 	t_bool				left_align;
@@ -95,5 +95,7 @@ typedef struct			s_printf
 	unsigned			width;
 	unsigned			prec;
 }						t_printf;
+
+unsigned    read_num(char **f);
 
 #endif
