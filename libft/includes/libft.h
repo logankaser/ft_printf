@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 15:19:08 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/21 19:14:48 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char				*ft_strjoin(char const *a, char const *b);
 char				*ft_strtrim(char const *str);
 char				**ft_strsplit(char const *str, char c);
 t_bool				ft_str_has_only(const char *str, const char *has_only);
+void				ft_strappend(char **str, char const *add);
+void				ft_strprepend(char const *add, char **str);
 char				*ft_itoa(long n);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);

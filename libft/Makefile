@@ -6,7 +6,7 @@
 #    By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2017/12/02 11:13:59 by lkaser           ###   ########.fr        #
+#    Updated: 2017/12/21 20:15:29 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,8 @@ ft_strstr \
 ft_strsub \
 ft_strtrim \
 ft_str_has_only \
+ft_strprepend \
+ft_strappend \
 ft_sumarray \
 ft_tolower \
 ft_toupper \

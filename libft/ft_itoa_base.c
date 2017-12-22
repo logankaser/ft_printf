@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:38:16 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 20:09:57 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/21 21:16:43 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-static unsigned	digits(int nbr)
+static unsigned	digits(long long nbr)
 {
-	unsigned len;
+	unsigned long long	len;
 
 	len = 1 + nbr < 0;
 	while (nbr)
@@ -26,7 +26,7 @@ static unsigned	digits(int nbr)
 	return (len);
 }
 
-static void		fill_str(long nbr, char *str, unsigned *i)
+static void		fill_str(long long nbr, char *str, unsigned *i)
 {
 	if (nbr >= 10 || nbr <= -10)
 	{
@@ -37,11 +37,11 @@ static void		fill_str(long nbr, char *str, unsigned *i)
 		str[(*i)++] = '0' + (nbr < 0 ? -nbr : nbr);
 }
 
-char			*ft_itoa(long nbr)
+char			*ft_itoa_base(long long nbr, base)
 {
-	unsigned	len;
-	char		*out;
-	unsigned	i;
+	unsigned long long 	len;
+	char				*out;
+	unsigned long long	i;
 
 	len = digits(nbr);
 	NULL_GUARD(out = malloc(len + 1));

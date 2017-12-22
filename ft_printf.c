@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:14:26 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 16:11:44 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/21 16:55:11 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ int			main(int argc, char **argv)
 	int r;
 
 	(void)argc;
-	r = ft_printf(argv[1]);
+	r = ft_printf(argv[1], 123);
 	printf("\n%i\n", r);
 	return (0);
 }
