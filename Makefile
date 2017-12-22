@@ -6,12 +6,12 @@
 #    By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2017/12/21 13:59:43 by lkaser           ###   ########.fr        #
+#    Updated: 2017/12/21 16:09:51 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = printf
-LIST = ft_printf util
+LIST = ft_printf format
 
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))

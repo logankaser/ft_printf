@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 13:32:15 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/21 15:19:08 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define ANY3(x,a,b,c) (x == a || x == b || x == c)
 # define ANY4(x,a,b,c,d) (x == a || x == b || x == c || x == d)
 # define ANY5(x,a,b,c,d,e) (x == a || x == b || x == c || x == d || x == e)
-#define MATCH(a,b) if (a) {b;}
-#define OR(a,b) else if (a) {b;}
+# define MATCH(a,b) if (a) b
+# define OR(a,b) else if (a) b
 
 typedef char		t_bool;
 void				*ft_memset(void *ptr, int val, size_t n);

@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 19:06:03 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 13:59:31 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/21 16:12:59 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ enum					e_type {
 
 enum					e_length { l_hh = 1, l_h, l_l, l_ll, l_j, l_z };
 
-typedef union			u_type
+typedef union			u_data
 {
 	char				t_char;
 	unsigned char		t_uchar;
@@ -80,11 +80,11 @@ typedef union			u_type
 	intmax_t			t_intmax;
 	intmax_t			t_uintmax;
 	size_t				t_size_t;
-}						t_type;
+}						t_data;
 
 typedef struct			s_printf
 {
-	t_type				arg;
+	t_data				data;
 	enum e_type			type;
 	enum e_length		len;
 	t_bool				pre;
@@ -96,6 +96,6 @@ typedef struct			s_printf
 	unsigned			prec;
 }						t_printf;
 
-unsigned    read_num(char **f);
+void					format_print(t_printf pf, size_t *len);
 
 #endif
