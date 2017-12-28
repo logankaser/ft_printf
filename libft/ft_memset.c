@@ -17,20 +17,7 @@ void	*ft_memset(void *m, int value, size_t size)
 	unsigned bit;
 
 	bit = 0;
-	if (!(size % 8))
-	{
-		size /= 8;
-		while (bit < size)
-			((unsigned long long*)m)[bit++] = (unsigned long long)value;
-	}
-	else if (!(size % 4))
-	{
-		size /= 4;
-		while (bit < size)
-			((unsigned*)m)[bit++] = (unsigned)value;
-	}
-	else
-		while (bit < size)
-			((unsigned char *)m)[bit++] = (unsigned char)value;
+	while (bit < size)
+		((unsigned char *)m)[bit++] = (unsigned char)value;
 	return (m);
 }

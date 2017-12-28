@@ -16,13 +16,13 @@ LIST = ft_printf format
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))
 
-CFLAGS = -Wall -Wextra -Werror -I libft/includes
+CFLAGS = -Wall -Wextra -Werror -I libft/includes -L libft -lft
 
 all: $(NAME) 
 
 $(NAME): $(OBJ)
 	make -C libft
-	gcc $(CFLAGS) -L libft -lft $(SRC) -o $(NAME)
+	gcc $(CFLAGS) $(SRC) -o $(NAME)
 
 lib:
 	make -C libft

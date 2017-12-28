@@ -20,9 +20,9 @@ static void	handle_flags(t_printf pf, char **out)
 		OR(pf.type == t_hex, ft_strprepend("0x", out));
 		OR(pf.type == t_hex_up, ft_strprepend("0X", out));
 	}
-	MATCH(pf.pre_plus && pf.type == t_int && pf.data.t_int >= 0,
+	MATCH(pf.pre_plus && pf.type == t_int && pf.data.i >= 0,
 		ft_strprepend("+", out));
-	OR(pf.pad_pos && pf.type == t_int && pf.data.t_int >= 0,
+	OR(pf.pad_pos && pf.type == t_int && pf.data.i >= 0,
 		ft_strprepend(" ", out));
 }
 
@@ -30,9 +30,14 @@ void		format_print(t_printf pf, size_t *len)
 {
 	char *str;
 
-	str = ft_itoa(pf.data.t_int);
+	MATCH(pf.type == t_int, str = FT_ITOA_BASE(pf.data.i, "0123456789"));
+	OR(pf.type == t_hex, str = FT_UTOA_BASE(pf.data.ull, "0123456789abcdef"));
+	OR(pf.type == t_hex_up, str = FT_UTOA_BASE(pf.data.ull, "0123456789ABCDEF"));
+	OR(pf.type == t_str, str = pf.data.str);
+	OR(pf.type == t_char, str = ft_memset(ft_strnew(2), pf.data.c, 1));
 	handle_flags(pf, &str);
 	*len += str ? ft_strlen(str) : 0;
 	ft_putstr(str);
-	free(str);
+	if (pf.type != t_str)
+		free(str);
 }

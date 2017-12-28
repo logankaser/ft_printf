@@ -20,6 +20,8 @@ ft_isascii \
 ft_isdigit \
 ft_isprint \
 ft_itoa \
+ft_utoa_base \
+ft_itoa_base \
 ft_lstadd \
 ft_lstdel \
 ft_lstdelone \

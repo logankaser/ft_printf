@@ -23,6 +23,8 @@
 # define ANY5(x,a,b,c,d,e) (x == a || x == b || x == c || x == d || x == e)
 # define MATCH(a,b) if (a) b
 # define OR(a,b) else if (a) b
+# define FT_ITOA_BASE(nbr, base) ft_itoa_base(nbr, base, sizeof base - 1)
+# define FT_UTOA_BASE(nbr, base) ft_itoa_base(nbr, base, sizeof base - 1)
 
 typedef char		t_bool;
 void				*ft_memset(void *ptr, int val, size_t n);
@@ -73,6 +75,9 @@ t_bool				ft_str_has_only(const char *str, const char *has_only);
 void				ft_strappend(char **str, char const *add);
 void				ft_strprepend(char const *add, char **str);
 char				*ft_itoa(long n);
+char				*ft_itoa_base(long long nbr, char *base_str, unsigned base);
+char				*ft_utoa_base(unsigned long long nbr, char *base_str,
+							unsigned base);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
 void				ft_puterror(char const *s);

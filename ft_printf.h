@@ -62,40 +62,37 @@ enum					e_type {
 	t_str, t_wstr, t_ptr, t_int,
 	t_uint, t_octal, t_hex, t_hex_up};
 
-enum					e_length { l_hh = 1, l_h, l_l, l_ll, l_j, l_z };
+enum	e_length { l_hh = 1, l_h, l_l, l_ll, l_j, l_z };
 
-typedef union			u_data
+typedef union					u_data
 {
-	char				t_char;
-	unsigned char		t_uchar;
-	short				t_short;
-	unsigned short		t_ushort;
-	int					t_int;
-	unsigned			t_uint;
-	char				*t_str;
-	long				t_long;
-	unsigned long		t_ulong;
-	long long			t_longlong;
-	unsigned long long	t_ulonglong;
-	intmax_t			t_intmax;
-	intmax_t			t_uintmax;
-	size_t				t_size_t;
-}						t_data;
+	char								c;
+	unsigned char				uc;
+	short								s;
+	unsigned short			us;
+	int									i;
+	unsigned						ui;
+	char								*str;
+	long								l;
+	unsigned long				ul;
+	long long						ll;
+	unsigned long long	ull;
+}											t_data;
 
-typedef struct			s_printf
+typedef struct				s_printf
 {
-	t_data				data;
-	enum e_type			type;
-	enum e_length		len;
-	t_bool				pre;
-	t_bool				pad_zero;
-	t_bool				left_align;
-	t_bool				pre_plus;
-	t_bool				pad_pos;
-	unsigned			width;
-	unsigned			prec;
-}						t_printf;
+	t_data							data;
+	enum e_type					type;
+	enum e_length				len;
+	t_bool							pre;
+	t_bool							pad_zero;
+	t_bool							left_align;
+	t_bool							pre_plus;
+	t_bool							pad_pos;
+	unsigned						width;
+	unsigned						prec;
+}											t_printf;
 
-void					format_print(t_printf pf, size_t *len);
+void									format_print(t_printf pf, size_t *len);
 
 #endif

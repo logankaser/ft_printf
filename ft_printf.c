@@ -13,6 +13,7 @@
 #include "ft_printf.h"
 #include <wchar.h>
 #include <unistd.h>
+#include <stdarg.h>
 
 /*
 **%[%][flags][width][(dot)precision][length]specifier
@@ -69,8 +70,10 @@ static void	parse_specifiers(t_printf *pf, char **f)
 	OR(ANY2(**f, 'o', 'O'), pf->type = t_octal);
 	OR(**f == 'x', pf->type = t_hex);
 	OR(**f == 'X', pf->type = t_hex_up);
-	ANY3(**f, 'U', 'O', 'D') && (pf->len = l_l);
-	pf->type && (++*f);
+	if (ANY3(**f, 'U', 'O', 'D'))
+		pf->len = l_l;
+	if (pf->type)
+		++*f;
 }
 
 unsigned	read_num(char **f)
@@ -102,7 +105,7 @@ static void	format_parse(char **f, va_list args, size_t *len)
 		++*f;
 	}
 	pf.width = read_num(f);
-	**f == '.' && (++*f);
+	MATCH(**f == '.', ++*f);
 	pf.prec = read_num(f);
 	MATCH(!ft_strncmp(*f, "hh", 2), pf.len = l_hh);
 	OR(**f == 'h', pf.len = l_h);
@@ -110,8 +113,8 @@ static void	format_parse(char **f, va_list args, size_t *len)
 	OR(**f == 'l', pf.len = l_l);
 	OR(**f == 'j', pf.len = l_j);
 	OR(**f == 'z', pf.len = l_z);
-	pf.len && (++*f);
-	ANY2(pf.len, l_hh, l_ll) && (++*f);
+	MATCH(pf.len, ++*f);
+	MATCH(ANY2(pf.len, l_hh, l_ll), ++*f);
 	parse_specifiers(&pf, f);
 	format_print(pf, len);
 }
@@ -168,7 +171,7 @@ int			main(int argc, char **argv)
 	int r;
 
 	(void)argc;
-	r = ft_printf(argv[1], 123);
+	r = ft_printf(argv[1], '*');
 	printf("\n%i\n", r);
 	return (0);
 }

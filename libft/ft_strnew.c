@@ -15,12 +15,8 @@
 char	*ft_strnew(size_t size)
 {
 	char		*new;
-	size_t		i;
 
-	new = (char *)malloc(++size);
-	NULL_GUARD(new);
-	i = 0;
-	while (i < size)
-		new[i++] = '\0';
+	NULL_GUARD(new = malloc(++size));
+	ft_bzero(new, size);
 	return (new);
 }
