@@ -6,7 +6,7 @@
 #    By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2017/12/21 20:15:29 by lkaser           ###   ########.fr        #
+#    Updated: 2017/12/29 11:56:30 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,16 +96,16 @@ CFLAGS = -O3 -Wall -Wextra -Werror -I includes/
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+	@ar rcs $(NAME) $(OBJ) && echo "\033[32;1mlibft.a Created\033[0m"
 
 $(OBJ): $(SRC)
-	gcc $(CFLAGS) -c $(SRC)
+	@gcc $(CFLAGS) -c $(SRC)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re:	fclean all
 

@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 19:06:03 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 16:12:59 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/29 11:27:41 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ typedef struct				s_printf
 }											t_printf;
 
 void									format_print(t_printf pf, size_t *len);
+int										ft_printf(char *format, ...);
 
 #endif
