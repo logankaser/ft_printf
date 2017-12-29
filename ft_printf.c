@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:14:26 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 16:55:11 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/28 19:47:32 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,17 +161,5 @@ int			ft_printf(char *format, ...)
 		va_end(args);
 		return (len);
 	}
-	return (0);
-}
-
-#include <stdio.h>
-
-int			main(int argc, char **argv)
-{
-	int r;
-
-	(void)argc;
-	r = ft_printf(argv[1], '*');
-	printf("\n%i\n", r);
 	return (0);
 }
