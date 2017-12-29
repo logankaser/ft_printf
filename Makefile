@@ -6,7 +6,7 @@
 #    By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2017/12/29 12:05:23 by lkaser           ###   ########.fr        #
+#    Updated: 2017/12/29 12:09:15 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C libft
 	@gcc -c $(SRC) $(CFLAGS)
-	@ar rcs $(NAME) libft/libft.a $(OBJ) && echo "\033[32;1mlibftprintf.a Created\033[0m"
+	@ar rcs $(NAME) libft/*.o $(OBJ) && echo "\033[32;1mlibftprintf.a Created\033[0m"
 
 clean:
 	@echo "\033[31;1mCleaning..\033[0m"
