@@ -6,7 +6,7 @@
 #    By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2017/12/28 20:02:31 by lkaser           ###   ########.fr        #
+#    Updated: 2017/12/28 20:06:05 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C libft
-	ar rcs $(NAME) $(OBJ) libft/libft.a
+	ar rcs $(NAME) $(OBJ) libft/*.o
 
 $(OBJ): $(SRC)
 	make -C libft
