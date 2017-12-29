@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utoa_base.c                                     :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/21 14:38:16 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/29 12:45:43 by lkaser           ###   ########.fr       */
+/*   Created: 2017/12/29 11:26:47 by lkaser            #+#    #+#             */
+/*   Updated: 2017/12/29 12:49:03 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#define PUT(a) write(1, a "\n", sizeof a)
 
-char	*ft_utoa_base(unsigned long long nbr, char *base_str, unsigned base)
+int	main(void)
 {
-	unsigned long long	n;
-	unsigned			digits;
-	char				*str;
-
-	digits = (nbr == 0);
-	n = nbr;
-	while (n)
-	{
-		n /= base;
-		++digits;
-	}
-	NULL_GUARD(str = malloc(digits + 1));
-	str[digits] = '\0';
-	while (digits)
-	{
-		--digits;
-		str[digits] = base_str[nbr % base];
-		nbr /= base;
-	}
-	return (str);
+	PUT("\"%c, %c, %c, %c\" | 'a', 'b', 'c', 'd'");
+	ft_printf("%c, %c, %c, %c\n", 'a', 'b', 'c', 'd');
+	PUT("\"%d, %d, %d, %d\" | 123, -1000, 0, 1");
+	ft_printf("%d, %d, %d, %d\n", 123, -1000, 1, 0);
+	PUT("\"%x, %X, %o, %O\" | 123, -100, 10, 12");
+	ft_printf("%x, %X, %o, %O\n", 123, -100, 10, 12);
+	return (0);
 }

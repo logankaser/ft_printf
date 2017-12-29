@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:38:16 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/28 19:47:58 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/29 12:44:51 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char			*ft_itoa_base(long long nbr, char *base_str, unsigned base)
 {
-	long long			n;
-	unsigned long	digits;
-	char					*str;
+	long long	n;
+	unsigned	digits;
+	char		*str;
 
-	digits = 1 + nbr < 0;
+	digits = (nbr <= 0);
 	n = nbr;
 	while (n)
 	{

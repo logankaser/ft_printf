@@ -6,7 +6,7 @@
 #    By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2017/12/29 11:56:30 by lkaser           ###   ########.fr        #
+#    Updated: 2017/12/29 12:32:38 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ get_next_line
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))
 
-CFLAGS = -O3 -Wall -Wextra -Werror -I includes/
+CFLAGS = -g -Wall -Wextra -Werror -I includes/
 
 all: $(NAME)
 
