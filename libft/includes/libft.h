@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 19:14:48 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/29 11:19:10 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define ANY5(x,a,b,c,d,e) (x == a || x == b || x == c || x == d || x == e)
 # define MATCH(a,b) if (a) b
 # define OR(a,b) else if (a) b
+# define OTHERWISE(a) else a
 # define FT_ITOA_BASE(nbr, base) ft_itoa_base(nbr, base, sizeof base - 1)
 # define FT_UTOA_BASE(nbr, base) ft_itoa_base(nbr, base, sizeof base - 1)
 
