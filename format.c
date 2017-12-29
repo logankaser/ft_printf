@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 16:08:47 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/29 12:47:08 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/29 13:00:00 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@ static void	handle_flags(t_printf pf, char **out)
 		ft_strprepend("+", out));
 	OR(pf.pad_pos && pf.type == t_int && pf.data.i >= 0,
 		ft_strprepend(" ", out));
+	if (pf.width)
+	{
+		if (pf.left_align)
+			while (pf.width--)
+				ft_strappend(out, " ");
+		else
+			while (pf.width--)
+				ft_strprepend(" ", out);
+	}
 }
 
 void		format_print(t_printf pf, size_t *len)
