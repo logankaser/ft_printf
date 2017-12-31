@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/29 13:37:38 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/30 16:25:46 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/30 16:34:35 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,14 @@ static char	*wchar_utf8(wchar_t wc)
 char		*ft_wchar_utf8(wchar_t *ws)
 {
 	char *out;
+	char *utf8;
 
 	NULL_GUARD(out = ft_strnew(1));
 	while (*ws)
-		ft_strappend(&out, wchar_utf8(*ws++));
+	{
+		utf8 = wchar_utf8(*ws++);
+		ft_strappend(&out, utf8);
+		free(utf8);
+	}
 	return (out);
 }
