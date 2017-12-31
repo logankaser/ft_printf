@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 20:38:49 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 20:01:44 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/30 16:23:46 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,4 @@ void	ft_strprepend(char const *add, char **str)
 		free(*str);
 		*str = new;
 	}
-	else
-		*str = NULL;
 }

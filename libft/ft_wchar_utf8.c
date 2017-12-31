@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/29 13:37:38 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/30 14:14:57 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/30 16:25:46 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*wchar_utf8(wchar_t wc)
 {
-	char* utf8;
+	char	*utf8;
 
 	NULL_GUARD(utf8 = ft_strnew(5));
 	if (wc <= 0x7f)

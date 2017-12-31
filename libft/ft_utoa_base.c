@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:38:16 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/29 17:27:01 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/30 16:22:09 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_utoa_base(uintmax_t nbr, char *base_str, unsigned base)
 {
-	uintmax_t 	n;
+	uintmax_t	n;
 	unsigned	digits;
 	char		*str;
 

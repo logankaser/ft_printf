@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/20 20:38:49 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/21 20:13:12 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/30 16:24:38 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_strappend(char **str, char const *add)
 	len = (*str ? ft_strlen(*str) : 0) + (add ? ft_strlen(add) : 0);
 	if ((new = malloc(len + 1)))
 	{
-
 		i = 0;
 		if (str && *str)
 			while ((*str)[i])
@@ -38,6 +37,4 @@ void	ft_strappend(char **str, char const *add)
 		free(*str);
 		*str = new;
 	}
-	else
-		*str = NULL;
 }
