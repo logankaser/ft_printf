@@ -6,15 +6,15 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 14:38:16 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/29 12:44:51 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/29 17:27:50 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_itoa_base(long long nbr, char *base_str, unsigned base)
+char			*ft_itoa_base(intmax_t nbr, char *base_str, unsigned base)
 {
-	long long	n;
+	intmax_t	n;
 	unsigned	digits;
 	char		*str;
 

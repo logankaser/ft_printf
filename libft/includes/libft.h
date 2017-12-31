@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/18 11:03:56 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/29 11:19:10 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/30 14:17:36 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define OR(a,b) else if (a) b
 # define OTHERWISE(a) else a
 # define FT_ITOA_BASE(nbr, base) ft_itoa_base(nbr, base, sizeof base - 1)
-# define FT_UTOA_BASE(nbr, base) ft_itoa_base(nbr, base, sizeof base - 1)
+# define FT_UTOA_BASE(nbr, base) ft_utoa_base(nbr, base, sizeof base - 1)
 
 typedef char		t_bool;
 void				*ft_memset(void *ptr, int val, size_t n);
@@ -47,6 +47,7 @@ char				*ft_strrchr(const char *str, int val);
 char				*ft_strstr(const char *str, const char *needle);
 char				*ft_strnstr(const char *str, const char *needle,
 					size_t size);
+char				*ft_wchar_utf8(wchar_t *wc);
 int					ft_strcmp(const char *a, const char *b);
 int					ft_strncmp(const char *a, const char *b, size_t size);
 int					ft_atoi(const char *str);
@@ -76,8 +77,8 @@ t_bool				ft_str_has_only(const char *str, const char *has_only);
 void				ft_strappend(char **str, char const *add);
 void				ft_strprepend(char const *add, char **str);
 char				*ft_itoa(long n);
-char				*ft_itoa_base(long long nbr, char *base_str, unsigned base);
-char				*ft_utoa_base(unsigned long long nbr, char *base_str,
+char				*ft_itoa_base(intmax_t nbr, char *base_str, unsigned base);
+char				*ft_utoa_base(uintmax_t nbr, char *base_str,
 							unsigned base);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);

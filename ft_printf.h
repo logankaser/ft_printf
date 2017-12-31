@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 19:06:03 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/29 11:27:41 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/30 12:28:51 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,36 +64,42 @@ enum					e_type {
 
 enum	e_length { l_hh = 1, l_h, l_l, l_ll, l_j, l_z };
 
-typedef union					u_data
+typedef union			u_data
 {
-	char								c;
-	unsigned char				uc;
-	short								s;
-	unsigned short			us;
-	int									i;
-	unsigned						ui;
-	char								*str;
-	long								l;
-	unsigned long				ul;
-	long long						ll;
+	char				c;
+	unsigned char		uc;
+	wchar_t				wc;
+	short				s;
+	unsigned short		us;
+	int					i;
+	unsigned			ui;
+	char				*str;
+	wchar_t				*wstr;
+	long				l;
+	unsigned long		ul;
+	long long			ll;
 	unsigned long long	ull;
-}											t_data;
+	intptr_t			p;
+	size_t				st;
+	intmax_t			im;
+	uintmax_t			um;
+}						t_data;
 
-typedef struct				s_printf
+typedef struct			s_printf
 {
-	t_data							data;
-	enum e_type					type;
-	enum e_length				len;
-	t_bool							pre;
-	t_bool							pad_zero;
-	t_bool							left_align;
-	t_bool							pre_plus;
-	t_bool							pad_pos;
-	unsigned						width;
-	unsigned						prec;
-}											t_printf;
+	t_data				data;
+	enum e_type			type;
+	enum e_length		len;
+	t_bool				pre;
+	t_bool				pad_zero;
+	t_bool				left_align;
+	t_bool				pre_plus;
+	t_bool				pad_pos;
+	int					width;
+	int					prec;
+}						t_printf;
 
-void									format_print(t_printf pf, size_t *len);
-int										ft_printf(char *format, ...);
+void					format_print(t_printf pf, size_t *len);
+int						ft_printf(char *format, ...);
 
 #endif

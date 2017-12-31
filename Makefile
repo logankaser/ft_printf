@@ -6,7 +6,7 @@
 #    By: lkaser <lkaser@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/20 13:52:57 by lkaser            #+#    #+#              #
-#    Updated: 2017/12/29 12:49:16 by lkaser           ###   ########.fr        #
+#    Updated: 2017/12/30 16:10:06 by lkaser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIST = ft_printf format
 SRC = $(addsuffix .c, $(LIST))
 OBJ = $(addsuffix .o, $(LIST))
 
-CFLAGS = -g -Wall -Wextra -Werror -I libft/includes
+CFLAGS = -O3 -Wall -Wextra -Werror -I libft/includes
 
 all: $(NAME) 
 

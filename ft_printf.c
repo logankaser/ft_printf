@@ -6,7 +6,7 @@
 /*   By: lkaser <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 13:14:26 by lkaser            #+#    #+#             */
-/*   Updated: 2017/12/29 11:27:28 by lkaser           ###   ########.fr       */
+/*   Updated: 2017/12/30 15:43:41 by lkaser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@
 
 static void	parse_specifiers(t_printf *pf, char **f)
 {
-	MATCH(**f == 'c', pf->type = t_char);
-	OR(**f == 'C', pf->type = t_wchar);
+	MATCH(**f == 'C' || (**f == 'c' && pf->len == l_l),
+		pf->type = t_wchar);
+	OR(**f == 'S' || (**f == 's' && pf->len == l_l), pf->type = t_wstr);
+	OR(**f == 'c', pf->type = t_char);
 	OR(**f == 's', pf->type = t_str);
-	OR(**f == 'S', pf->type = t_wstr);
 	OR(**f == 'p', pf->type = t_ptr);
 	OR(ANY3(**f, 'i', 'd', 'D'), pf->type = t_int);
 	OR(ANY2(**f, 'u', 'U'), pf->type = t_uint);
@@ -72,6 +73,8 @@ static void	parse_specifiers(t_printf *pf, char **f)
 	OR(**f == 'X', pf->type = t_hex_up);
 	if (ANY3(**f, 'U', 'O', 'D'))
 		pf->len = l_l;
+	if (pf->type == t_ptr)
+		pf->pre = 1;
 	if (pf->type)
 		++*f;
 }
@@ -105,8 +108,6 @@ static void	format_parse(char **f, va_list args, size_t *len)
 		++*f;
 	}
 	pf.width = read_num(f);
-	MATCH(**f == '.', ++*f);
-	pf.prec = read_num(f);
 	MATCH(!ft_strncmp(*f, "hh", 2), pf.len = l_hh);
 	OR(**f == 'h', pf.len = l_h);
 	OR(!ft_strncmp(*f, "ll", 2), pf.len = l_ll);
@@ -126,23 +127,23 @@ static void	format_iter(char *f, va_list args, size_t *len)
 	d = 0;
 	while (f[d])
 	{
-		if (f[d] == '%')
+		if (f[d] == '%' && f[d + 1] == '%')
 		{
-			if (f[d + 1] == '%')
-			{
-				write(1, f, ++d);
-				*len += d;
-				f += ++d;
-				d = 0;
-				continue;
-			}
+			write(1, f, ++d);
+			*len += d;
+			f += ++d;
+			d = 0;
+		}
+		else if (f[d] == '%')
+		{
 			write(1, f, d);
 			f += d + 1;
 			format_parse(&f, args, len);
 			*len += d;
 			d = 0;
 		}
-		d += f[d] != 0;
+		else
+			d += f[d] != 0;
 	}
 	write(1, f, d);
 	*len += d;
